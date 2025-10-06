@@ -190,6 +190,6 @@ jobs:
               curl -X PATCH \
                 -H "Authorization: Bearer ${{ inputs.token }}" \
                 -H "Accept: application/vnd.github+json" \
-                https://api.github.com/repos/${{ inputs.owner }}/${{ inputs.repo }}/check-runs/${{ inputs.check_run_id }} \
+                $GITHUB_API_URL/repos/${{ inputs.owner }}/${{ inputs.repo }}/check-runs/${{ inputs.check_run_id }} \
                 -d @"payload.txt"
             done
