@@ -30,6 +30,9 @@ on:
       bundle_version:
         required: true
         type: string
+      default_runs_on:
+        required: true
+        type: string
   
 jobs:
   build:
@@ -45,6 +48,7 @@ jobs:
       ruby_version: ${{ inputs.ruby_version }}
       bundle_version: ${{ inputs.bundle_version }}
       event_name: ${{ inputs.event_name }}
+      default_runs_on: ${{ inputs.default_runs_on }}
 
   build-tsql-package:
     if: ${{ inputs.event_name == 'tsql-pipeline-scan' || inputs.event_name == 'tsql-policy-scan'  || inputs.event_name == 'tsql-sandbox-scan'}}
@@ -53,6 +57,7 @@ jobs:
       repository: ${{ inputs.repository }}
       ref: ${{ inputs.ref }}
       token: ${{ inputs.token }}
+      default_runs_on: ${{ inputs.default_runs_on }}
 
   build-plsql-package:
     if: ${{ inputs.event_name == 'plsql-pipeline-scan' || inputs.event_name == 'plsql-policy-scan'  || inputs.event_name == 'plsql-sandbox-scan'}}
@@ -61,6 +66,7 @@ jobs:
       repository: ${{ inputs.repository }}
       ref: ${{ inputs.ref }}
       token: ${{ inputs.token }}
+      default_runs_on: ${{ inputs.default_runs_on }}
 
   build-php-package:
     if: ${{ inputs.event_name == 'php-pipeline-scan' || inputs.event_name == 'php-policy-scan'  || inputs.event_name == 'php-sandbox-scan'}}
@@ -69,6 +75,7 @@ jobs:
       repository: ${{ inputs.repository }}
       ref: ${{ inputs.ref }}
       token: ${{ inputs.token }}
+      default_runs_on: ${{ inputs.default_runs_on }}
 
   build-dart-package:
     if: ${{ inputs.event_name == 'dart-pipeline-scan' || inputs.event_name == 'dart-policy-scan'  || inputs.event_name == 'dart-sandbox-scan'}}
@@ -77,3 +84,4 @@ jobs:
       repository: ${{ inputs.repository }}
       ref: ${{ inputs.ref }}
       token: ${{ inputs.token }}
+      default_runs_on: ${{ inputs.default_runs_on }}

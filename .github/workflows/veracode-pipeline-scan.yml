@@ -48,10 +48,13 @@ on:
       language:
         required: true
         type: string
+      default_runs_on:
+        required: true
+        type: string
 
 jobs:
   prepare_pipeline_scan:
-    runs-on: self-hosted
+    runs-on: ${{ inputs.default_runs_on }}
     name: prepare pipeline scan
     outputs:
       matrix_files: ${{ steps.get-files.outputs.matrix_files }} 
@@ -74,7 +77,7 @@ jobs:
         shell: bash
 
   pipeline_scan:
-    runs-on: self-hosted
+    runs-on: ${{ inputs.default_runs_on }}
     needs: prepare_pipeline_scan
     strategy:
       matrix:
@@ -157,7 +160,7 @@ jobs:
           commitHash: ${{ inputs.sha }}
 
   update-checks-status:
-    runs-on: self-hosted
+    runs-on: ${{ inputs.default_runs_on }}
     needs: pipeline_scan
     if: always()
     steps:

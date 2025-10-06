@@ -12,10 +12,13 @@ on:
       token:
         required: true
         type: string
+      default_runs_on:
+        required: true
+        type: string
   
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ${{ inputs.default_runs_on }}
     steps:
     - uses: actions/checkout@v4
       with:

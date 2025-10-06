@@ -21,7 +21,7 @@ jobs:
 
   veracode-not-supported:
     needs: [register]
-    runs-on: self-hosted
+    runs-on: ${{ github.event.client_payload.user_config.default_runs_on }}
     name: Veracode - SAST/SCA Not Supported Repository 
 
     steps:

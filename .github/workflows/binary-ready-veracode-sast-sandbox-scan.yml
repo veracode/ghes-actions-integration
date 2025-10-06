@@ -12,7 +12,7 @@ on:
 
 jobs:
   sandbox_scan:
-    runs-on: self-hosted
+    runs-on: ${{ github.event.client_payload.user_config.default_runs_on }}
     steps:
       - name: Download artifact
         id: download-artifact
