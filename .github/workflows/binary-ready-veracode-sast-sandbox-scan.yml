@@ -40,3 +40,4 @@ jobs:
           # include: ${{ github.event.client_payload.modules_to_scan }}
           failbuild: ${{ github.event.client_payload.user_config.break_build_policy_findings }}
           deleteincompletescan: true
+          platformType: 'ENTERPRISE'

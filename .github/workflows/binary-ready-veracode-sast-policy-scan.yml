@@ -40,6 +40,7 @@ jobs:
           appname: ${{ github.event.client_payload.user_config.profile_name }}
           source_repository: ${{ github.event.client_payload.repository.full_name }}
           check_run_id: ${{ needs.register.outputs.run_id }}
+          platformType: 'ENTERPRISE'
 
       - name: Verify Policy name
         id: verify_policy_name
@@ -58,6 +59,7 @@ jobs:
           start_line: ${{ github.event.client_payload.annotationObj.start_line }}
           end_line: ${{ github.event.client_payload.annotationObj.end_line }}
           break_build_invalid_policy: ${{github.event.client_payload.break_build_invalid_policy }}
+          platformType: 'ENTERPRISE'
 
   policy_scan:
     needs: [register, validations]
@@ -88,6 +90,7 @@ jobs:
           scantimeout: 30
           failbuild: ${{ github.event.client_payload.user_config.break_build_policy_findings }}
           deleteincompletescan: true
+          platformType: 'ENTERPRISE'
 
       - name: Veracode Policy Results
         id: prepare-results
@@ -104,6 +107,7 @@ jobs:
           fail_checks_on_policy: ${{ github.event.client_payload.user_config.break_build_policy_findings }}
           fail_checks_on_error: ${{ github.event.client_payload.user_config.break_build_on_error }}
           filter_mitigated_flaws: ${{ github.event.client_payload.user_config.filter_mitigated_flaws }}
+          platformType: 'ENTERPRISE'
 
   veracode-remove-sandbox:
     needs: policy_scan
@@ -118,6 +122,7 @@ jobs:
           vkey: ${{ secrets.VERACODE_API_KEY }}
           appname: ${{ github.event.client_payload.user_config.profile_name }}
           sandboxname: GitHub App Scans-${{ github.event.client_payload.user_config.sandbox_scan.branch }}
+          platformType: 'ENTERPRISE'
 
   code-scanning-alert:
     needs: policy_scan

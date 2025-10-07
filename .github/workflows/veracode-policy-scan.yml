@@ -93,6 +93,7 @@ jobs:
           failbuild: ${{ inputs.break_build_policy_findings }}
           gitRepositoryUrl: ${{ github.server_url }}/${{ inputs.source_repository }}
           deleteincompletescan: true
+          platformType: 'ENTERPRISE'
 
       - name: Veracode Policy Results
         id: prepare-results
@@ -111,6 +112,7 @@ jobs:
           filter_mitigated_flaws: ${{ inputs.filter_mitigated_flaws }}
           head_sha: ${{ inputs.sha }}
           gitRepositoryUrl: ${{ github.server_url }}/${{ inputs.source_repository }}
+          platformType: 'ENTERPRISE'
 
   veracode-remove-sandbox:
     needs: policy_scan
@@ -125,6 +127,7 @@ jobs:
           vkey: ${{ secrets.VERACODE_API_KEY }}
           appname: ${{ github.event.client_payload.user_config.profile_name }}
           sandboxname: GitHub App Scans-${{ github.event.client_payload.user_config.sandbox_scan.branch }}
+          platformType: 'ENTERPRISE'
 
   code-scanning-alert:
     needs: policy_scan

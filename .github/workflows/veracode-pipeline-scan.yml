@@ -119,6 +119,7 @@ jobs:
           artifact_name: ${{ matrix.file }}
           debug: 1
           workflow_app: true
+          platformType: 'ENTERPRISE'
     
       - name: Veracode Pipeline Results
         if: always()
@@ -136,6 +137,7 @@ jobs:
           fail_checks_on_error: ${{ inputs.break_build_on_error }} 
           filter_mitigated_flaws: ${{ inputs.filter_mitigated_flaws }}
           filtered_results_file: ${{ strategy.job-index }}-filtered_results.json
+          platformType: 'ENTERPRISE'
 
       - name: Convert pipeline scan output to SARIF format
         if: ${{ inputs.create_code_scanning_alert && always() }}
