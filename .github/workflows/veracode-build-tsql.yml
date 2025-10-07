@@ -18,7 +18,7 @@ on:
   
 jobs:
   build:
-    runs-on: ${{ inputs.default_runs_on }}
+    runs-on: ${{ fromJSON(inputs.default_runs_on) }}
     steps:
     - uses: actions/checkout@v4
       with:

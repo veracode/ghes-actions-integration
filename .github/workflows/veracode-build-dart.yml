@@ -18,7 +18,7 @@ on:
   
 jobs:
   build:
-    runs-on: ${{ inputs.default_runs_on }}
+    runs-on: ${{ fromJSON(github.event.client_payload.user_config.default_runs_on) }}
     steps:
     - uses: actions/checkout@v4
       with:

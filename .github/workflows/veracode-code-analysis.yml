@@ -48,7 +48,7 @@ jobs:
 
   validations:
     needs: register
-    runs-on: ${{ github.event.client_payload.user_config.default_runs_on }}
+    runs-on: ${{ fromJSON(github.event.client_payload.user_config.default_runs_on) }}
     name: Validations
     steps:
       - name: Checkout repository

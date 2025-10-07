@@ -35,7 +35,7 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ inputs.default_runs_on }}
+    runs-on: ${{ fromJSON(inputs.default_runs_on) }}
     container:
       image: ${{ inputs.build_packager_image }}
     env:

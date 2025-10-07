@@ -9,7 +9,7 @@ on:
 
 jobs:
   register:
-    runs-on: ${{ github.event.client_payload.user_config.default_runs_on }}
+    runs-on: ${{ fromJSON(github.event.client_payload.user_config.default_runs_on) }}
     name: register
     steps:
     - name: Register build
