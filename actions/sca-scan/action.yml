@@ -11,52 +11,52 @@ inputs:
     required: true
   quick:
     description: "Run the SRCCLR with the `--quick` options"
-    required: false
-    default: "false"
+    required: true
+    default: "true"
   update_advisor:
     description: "Show update advisor"
-    required: false
-    default: "false"
+    required: true
+    default: "true"
   url:
     description: "A git URL to work with in case the scan is not for the current repository"
-    required: false
+    required: true
     default: ""
   create-issues:
     description: "An attribute to instruct the action to create an issue from found vulnerability or just simple text output"
-    required: false
-    default: "false"
+    required: true
+    default: "true"
   path:
     description: "A path within the repository where the build definition starts"
-    required: false
+    required: true
     default: "."
   debug:
     description: "Run the SRCCLR in debug mode"
-    required: false
-    default: "false"
+    required: true
+    default: "true"
   skip-collectors:
     description: "Run the SRCCLR with the `--skip-collectors` options"
-    required: false
-    default: "false"
+    required: true
+    default: "true"
   allow-dirty:
     description: "Run the SRCCLR with the `--allow-dirty` option"
-    required: false
-    default: "false"
+    required: true
+    default: "true"
   recursive:
     description: "Run the SRCCLR with the `--recursive` option"
-    required: false
-    default: "false"
+    required: true
+    default: "true"
   skip-vms:
     description: "Run the SRCCLR with the `--skip-vms` option"
-    required: false
-    default: "false"
+    required: true
+    default: "true"
   no-graphs:
     description: "Run the SRCCLR with the `--no-graphs` option"
-    required: false
-    default: "false"
+    required: true
+    default: "true"
   platformType:
     description: 'Specifies the platform environment type — use CLOUD for GitHub.com or ENTERPRISE for GitHub Enterprise Server (GHES).'
     default: 'CLOUD'
-    required: false
+    required: true
 runs:
   using: 'node20'
   main: 'dist/index.js'
