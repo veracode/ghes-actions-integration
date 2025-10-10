@@ -47,6 +47,8 @@ jobs:
     outputs:
       run_id: ${{ fromJson(steps.create_check_run.outputs.data).id }}
     steps: 
+      - name: Checkout repository
+        uses: actions/checkout@v4
       # Create check run
       - name: GitHub API Request to create a check
         uses: octokit/request-action@v2.x
