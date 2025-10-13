@@ -51,8 +51,6 @@ jobs:
     runs-on: ${{ fromJSON(github.event.client_payload.user_config.default_runs_on) }}
     name: Validations
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
       - name: Verify Veracode API credentials
         id: verify_api_creds
         uses: ./actions/integration-helper
