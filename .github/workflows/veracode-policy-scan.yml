@@ -185,7 +185,7 @@ jobs:
           repo_name: ${{ inputs.repo }}
           github-token: ${{ inputs.token }}
           commitHash: ${{ inputs.sha }}
-      
+
       - name: cleanup job
         if: always()
         run: |
