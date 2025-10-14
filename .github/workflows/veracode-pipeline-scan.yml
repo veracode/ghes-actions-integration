@@ -195,3 +195,13 @@ jobs:
                 $GITHUB_API_URL/repos/${{ inputs.owner }}/${{ inputs.repo }}/check-runs/${{ inputs.check_run_id }} \
                 -d @"payload.txt"
             done
+
+  cleanup:
+    runs-on: ${{ fromJSON(inputs.default_runs_on) }}
+    if: always()
+    needs: [pipeline_scan]
+    steps:
+      - name: Cleanup workspace
+        run: |
+          echo "Running final cleanup..."
+          sudo rm -rf $GITHUB_WORKSPACE/

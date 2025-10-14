@@ -69,3 +69,9 @@ jobs:
           gitRepositoryUrl: ${{ github.server_url }}/${{ github.event.client_payload.repository.full_name }}
           deleteincompletescan: true
           platformType: 'ENTERPRISE'
+
+      - name: cleanup job
+        if: always()
+        run: |
+          echo "Running cleanup..."
+          sudo rm -rf $GITHUB_WORKSPACE/
