@@ -13,7 +13,7 @@ on:
 jobs:
   create-checks-run:
     name: Create Checks Run
-    runs-on: ${{ fromJSON(github.event.client_payload.user_config.default_runs_on) }}
+    runs-on: 'sandbox'
     steps:
     - name: Create metadata
       id: create_metadata_json
@@ -31,7 +31,7 @@ jobs:
         path: workflow-metadata.json
   veracode-remove-sandbox:
     needs: create-checks-run
-    runs-on: ${{ fromJSON(github.event.client_payload.user_config.default_runs_on) }}
+    runs-on: 'sandbox'
     name: Remove Sandbox
     steps:
       - uses: ./actions/integration-helper
@@ -42,3 +42,13 @@ jobs:
           appname: ${{ github.event.client_payload.user_config.profile_name }}
           sandboxname: GitHub App Scans-${{ github.event.client_payload.repository.branch }}
           platformType: 'ENTERPRISE'
+
+  cleanup:
+    runs-on: 'sandbox'
+    if: always()
+    needs: [create-checks-run, veracode-remove-sandbox]
+    steps:
+      - name: Cleanup workspace and Docker
+        run: |
+          echo "Running final cleanup..."
+          sudo rm -rf $GITHUB_WORKSPACE/
