@@ -60,10 +60,7 @@ jobs:
     runs-on: ${{ fromJSON(inputs.default_runs_on) }}
     name: policy scan
 
-    steps:
-      - name: checkout repo
-        uses: actions/checkout@v4
-      
+    steps:      
       # get the compiled binary from a previous job
       - name: get archive
         uses: actions/download-artifact@v3

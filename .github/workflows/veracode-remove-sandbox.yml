@@ -13,7 +13,7 @@ on:
 jobs:
   create-checks-run:
     name: Create Checks Run
-    runs-on: 'sandbox'
+    runs-on: ${{ fromJSON(github.event.client_payload.user_config.default_runs_on) }}
     steps:
     - name: Create metadata
       id: create_metadata_json
@@ -31,7 +31,7 @@ jobs:
         path: workflow-metadata.json
   veracode-remove-sandbox:
     needs: create-checks-run
-    runs-on: 'sandbox'
+    runs-on: ${{ fromJSON(github.event.client_payload.user_config.default_runs_on) }}
     name: Remove Sandbox
     steps:
       - uses: ./actions/integration-helper
@@ -44,7 +44,7 @@ jobs:
           platformType: 'ENTERPRISE'
 
   cleanup:
-    runs-on: 'sandbox'
+    runs-on: ${{ fromJSON(github.event.client_payload.user_config.default_runs_on) }}
     if: always()
     needs: [create-checks-run, veracode-remove-sandbox]
     steps:
