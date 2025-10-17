@@ -1,5 +1,3 @@
-default:
-  runs_on: 'self-hosted, Linux'
 veracode_static_scan:
   push:
     trigger: true
