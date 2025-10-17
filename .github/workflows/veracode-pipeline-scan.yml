@@ -54,7 +54,7 @@ on:
 
 jobs:
   prepare_pipeline_scan:
-    runs-on: ${{ fromJson(inputs.build_runs_on) }}
+    runs-on: ${{ fromJson(inputs.default_runs_on) }}
     name: prepare pipeline scan
     outputs:
       matrix_files: ${{ steps.get-files.outputs.matrix_files }} 
